@@ -8,14 +8,14 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/muhammadumarrasheed/cicd-myapp'
+                git 'https://github.com/muhammadumarrasheed/cicd-myapp.git'
             }
         }
 
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build(DOCKER_IMAGE)
+                    docker.build(DOCKER_IMAGE, '.')
                 }
             }
         }
