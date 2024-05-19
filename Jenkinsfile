@@ -65,7 +65,7 @@ pipeline {
         stage('Run Application') {
             steps {
                 script {
-                    docker.image(DOCKER_IMAGE).run('-p 3000:3000')
+                    docker.image(DOCKER_IMAGE).run('-p 3001:3001')
                 }
             }
         }
