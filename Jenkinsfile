@@ -39,12 +39,12 @@
 
 
 
-
 pipeline {
     agent any
 
     environment {
         DOCKER_IMAGE = 'myapp_image'
+        TEST_DOCKER_IMAGE = 'myapp_test_image'
     }
 
     stages {
@@ -70,6 +70,14 @@ pipeline {
             }
         }
 
+        stage('Build Test Docker Image') {
+            steps {
+                script {
+                    docker.build(TEST_DOCKER_IMAGE, '-f Dockerfile.test .')
+                }
+            }
+        }
+
         stage('Install Chrome and ChromeDriver') {
             steps {
                 script {
@@ -81,7 +89,7 @@ pipeline {
                     sh 'sudo rm -rf /opt/google/chrome || true'
                     sh 'sudo rm /usr/bin/google-chrome || true'
                     sh 'sudo rm /usr/local/bin/chromedriver || true'
-                    sh 'sudo find / -name "chromedriver" -exec rm -f {} \; || true'
+                    sh 'sudo find / -name "chromedriver" -exec rm -f {} \\; || true'
 
                     // Download and install Google Chrome
                     sh 'wget https://storage.googleapis.com/chrome-for-testing-public/125.0.6422.60/linux64/chrome-linux64.zip'
