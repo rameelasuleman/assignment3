@@ -77,39 +77,6 @@ pipeline {
                 }
             }
         }
-
-        stage('Install Chrome and ChromeDriver') {
-            steps {
-                script {
-                    // Install dependencies
-                    sh 'sudo apt-get update'
-                    sh 'sudo apt-get install -y unzip wget'
-
-                    // Remove existing Chrome and ChromeDriver installations
-                    sh 'sudo rm -rf /opt/google/chrome || true'
-                    sh 'sudo rm /usr/bin/google-chrome || true'
-                    sh 'sudo rm /usr/local/bin/chromedriver || true'
-                    sh 'sudo find / -name "chromedriver" -exec rm -f {} \\; || true'
-
-                    // Download and install Google Chrome
-                    sh 'wget https://storage.googleapis.com/chrome-for-testing-public/125.0.6422.60/linux64/chrome-linux64.zip'
-                    sh 'unzip chrome-linux64.zip'
-                    sh 'sudo mv chrome-linux64 /opt/google/chrome'
-                    sh 'sudo ln -s /opt/google/chrome/chrome /usr/bin/google-chrome'
-
-                    // Download and install ChromeDriver
-                    sh 'wget https://storage.googleapis.com/chrome-for-testing-public/125.0.6422.60/linux64/chromedriver-linux64.zip'
-                    sh 'unzip chromedriver-linux64.zip'
-                    sh 'sudo mv chromedriver-linux64/chromedriver /usr/local/bin/'
-                    sh 'sudo chmod +x /usr/local/bin/chromedriver'
-
-                    // Verify installations
-                    sh 'google-chrome --version'
-                    sh 'chromedriver --version'
-                }
-            }
-        }
-
         stage('Run Tests') {
             steps {
                 script {
