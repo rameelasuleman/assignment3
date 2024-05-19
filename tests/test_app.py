@@ -32,7 +32,7 @@ class MyAppTests:
         submit_button = self.driver.find_element(By.XPATH, "//button[@type='submit']")
 
         name_input.send_keys("Test User")
-        email_input.send_keys("testuser@example.com")
+        email_input.send_keys("testuser1@example.com")
         password_input.send_keys("testpassword")
         submit_button.click()
 
