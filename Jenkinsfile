@@ -8,7 +8,7 @@
 //     stages {
 //         stage('Clone Repository') {
 //             steps {
-//                 git branch: 'main', url: 'https://github.com/muhammadumarrasheed/cicd-myapp.git'
+//                 git branch: 'main', url: 'https://github.com/rameelasuleman/assignment3.git'
 //             }
 //         }
 
@@ -50,7 +50,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'main', url: 'https://github.com/muhammadumarrasheed/cicd-myapp.git'
+                git branch: 'main', url: 'https://github.com/rameelasuleman/assignment3.git'
             }
         }
 
